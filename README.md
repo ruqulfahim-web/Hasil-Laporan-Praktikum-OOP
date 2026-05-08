@@ -1,104 +1,90 @@
-📘 Praktikum OOP Python
-Repository ini berisi latihan dan analisis Object Oriented Programming menggunakan Python. Materi mencakup Class, Object, Inheritance, Encapsulation, Abstraction, dan Polymorphism.
+📘 Praktikum Object-Oriented Programming (OOP) Python
+Repository ini berisi dokumentasi, latihan, dan analisis mendalam mengenai konsep Object-Oriented Programming menggunakan bahasa pemrograman Python. Materi mencakup enam pilar utama OOP: Class & Object, Inheritance, Encapsulation, Abstraction, dan Polymorphism.
 
-🦸 Latihan 1. Membuat Class Hero
-Latihan1
+🦸 Latihan 1: Membuat Class & Object
+Fokus: Inisialisasi atribut dan manipulasi objek sederhana.
 
-PERTANYAAN:
-Apa yang terjadi jika kamu mengubah hero1.hp menjadi 500 setelah baris hero1 = Hero...? Coba lakukan print(hero1.hp).
+📝 Analisis
+Pertanyaan: Apa yang terjadi jika kamu mengubah hero1.hp menjadi 500 setelah baris hero1 = Hero...? Coba lakukan print(hero1.hp).
 
-JAWABAN:
-Yang terjadi jika mengubah hero1.hp menjadi 500 setelah baris hero1 = Hero adalah nilai HP dari objek hero1 (Layla) akan berubah dari nilai awal 100 menjadi 500. Ketika kita menjalankan print(hero1.hp), program akan menampilkan angka 500.
+Jawaban:
+Nilai HP dari objek hero1 (Layla) akan berubah dari nilai awal 100 menjadi 500. Hal ini karena atribut hp pada latihan ini masih bersifat public, sehingga nilainya dapat diakses dan diubah langsung dari luar class. Output program akan menampilkan angka 500.
 
-🤝 Latihan 2. Interaksi Antar Objek
-Latihan2
+🤝 Latihan 2: Interaksi Antar Objek
+Fokus: Komunikasi antar instance class melalui method.
 
-PERTANYAAN:
-Perhatikan parameter lawan pada method serang. Parameter tersebut menerima sebuah objek utuh, bukan hanya string nama. Mengapa ini penting?
+📝 Analisis
+Pertanyaan: Perhatikan parameter lawan pada method serang. Parameter tersebut menerima sebuah objek utuh, bukan hanya string nama. Mengapa ini penting?
 
-JAWABAN:
-Parameter lawan pada method serang menerima sebuah objek utuh (bukan hanya string nama) karena hal ini sangat penting dalam pemrograman berorientasi objek. Berikut adalah alasan-alasan pentingnya:
+Jawaban:
+Mengirimkan objek utuh memberikan fleksibilitas dan fungsionalitas penuh:
 
-🧬 Latihan 3. Pewarisan Inheritance
-Latihan3
+Akses Atribut: Kita bisa mengakses semua atribut lawan (HP, Defense, Nama) secara langsung.
 
-PERTANYAAN 1:
-Pada class Mage, coba hapus (atau jadikan komentar #) baris kode super().init(name, hp, attack_power). Kemudian jalankan programnya. Apa yang terjadi?
+Manipulasi Langsung: Kita bisa langsung mengurangi nilai HP objek lawan di dalam method tersebut.
 
-JAWABAN: Kode mengalami error setelah dijalankan.
+Integritas Data: Perubahan yang terjadi pada objek lawan akan tersimpan secara permanen pada instance tersebut, bukan sekadar mengubah variabel lokal.
 
-PERTANYAAN 2:
-Error apa yang muncul saat kamu mencoba melihat info Eudora (eudora.info())? Mengapa error tersebut mengatakan Mage object has no attribute 'name', padahal kita sudah mengirim nama "Eudora" saat pembuatan objek?
+🧬 Latihan 3: Pewarisan (Inheritance)
+Fokus: Reusabilitas kode menggunakan Class Induk dan Class Anak.
 
-JAWABAN: Error yang muncul saat memanggil eudora.info() adalah AttributeError: 'Mage' object has no attribute 'name'.
+📝 Analisis
+Pertanyaan 1: Pada class Mage, jika baris super().__init__(name, hp, attack_power) dihapus atau dikomentari, apa yang terjadi?
 
-Error ini terjadi karena pada class Mage, constructor milik class Induk (Hero) tidak dipanggil, sehingga atribut name, hp, dan attack_power tidak pernah dibuat di dalam objek Mage, meskipun nilai-nilai tersebut dikirim saat pembuatan objek.
+Jawaban: Kode akan mengalami error saat dijalankan karena proses inisialisasi class induk terputus.
 
-🔐 Latihan 4. Enkapsulasi
-Latihan4
+Pertanyaan 2: Error apa yang muncul saat memanggil eudora.info()? Mengapa hal itu terjadi padahal kita mengirim parameter "Eudora"?
 
-TUGAS ANALISIS 4.1: PERCOBAAN HACKING
-Pertanyaan 1: Apakah nilai HP muncul atau Error ketika mengakses hero1._Hero__hp?
+Jawaban: Muncul AttributeError: 'Mage' object has no attribute 'name'.
 
-Jawaban: Nilai HP tetap muncul dan tidak error. Ketika saya menambahkan baris kode print(f"Mencoba akses paksa: {hero1._Hero__hp}"), program berhasil menampilkan nilai HP yang tersimpan dalam atribut private __hp.
+Penyebab: Tanpa fungsi super().__init__, constructor milik class induk (Hero) tidak pernah dijalankan. Akibatnya, atribut name, hp, dan attack_power tidak pernah dibuat/disimpan ke dalam memori objek Mage, meskipun argumennya dikirim saat pembuatan objek.
 
-Pertanyaan 2: Mengapa Python masih mengizinkan akses ini (konsep Name Mangling) dan mengapa kita tetap tidak boleh melakukannya dalam standar pemrograman yang baik?
+🔐 Latihan 4: Enkapsulasi
+Fokus: Keamanan data melalui Private Attributes dan Getter/Setter.
 
-Jawaban: Python masih mengizinkan akses ini karena Python menggunakan konsep yang disebut "Name Mangling". Ketika kita membuat atribut private dengan tanda __ (double underscore), Python tidak benar-benar menyembunyikan atribut tersebut, melainkan mengubah namanya secara internal menjadi _NamaClass__namaAtribut. Dalam kasus ini, __hp diubah menjadi _Hero__hp.
+🧪 4.1 Percobaan Hacking
+Akses Paksa: Nilai HP tetap muncul jika diakses melalui hero1._Hero__hp.
 
-TUGAS ANALISIS 4.2: UJI VALIDASI
-Pertanyaan 1: Apa yang terjadi pada data HP Hero ketika logic validasi (if dan elif) dihapus dari method set_hp, kemudian melakukan hero1.set_hp(-100)?
+Konsep Name Mangling: Python tidak benar-benar menyembunyikan atribut private, melainkan mengubah namanya menjadi _NamaClass__namaAtribut. Kita tidak boleh melakukannya karena melanggar prinsip data hiding dan dapat menyebabkan inkonsistensi data jika dilakukan secara sembarangan.
 
-Jawaban: Ketika logic validasi dihapus dari method set_hp sehingga isinya hanya berisi self.__hp = nilai_baru, maka HP Hero akan langsung diset menjadi -100 tanpa ada pemeriksaan atau pencegahan. Ini sangat berbahaya karena dalam konteks game, HP (Health Point) yang bernilai negatif tidak masuk akal dan melanggar aturan game.
+🧪 4.2 Uji Validasi
+Tanpa Validasi: Jika logic if/elif dihapus, HP bisa bernilai negatif (misal: -100). Ini merusak logika permainan (integritas data).
 
-Dampak yang terjadi:
+Pentingnya Setter: Method Setter bertindak sebagai "Penjaga Gerbang". Ini mencegah cheating, memastikan data tetap logis (HP tidak mungkin negatif), dan mencegah crash pada sistem lain yang mengandalkan keakuratan data tersebut.
 
-Data menjadi tidak valid: Hero memiliki HP -100, yang secara logika tidak mungkin (HP minimal seharusnya 0).
+🧾 Latihan 5: Abstraction dan Interface
+Fokus: Membuat kontrak antar class menggunakan ABC (Abstract Base Class).
 
-Bug dalam game: Kondisi ini bisa menyebabkan error atau perilaku aneh dalam game. Misalnya, ketika mengecek apakah hero sudah mati (biasanya dengan kondisi if hp <= 0), hero dengan HP negatif mungkin masih dianggap hidup tergantung bagaimana kondisinya ditulis.
+📝 Analisis
+Pertanyaan: Apa yang terjadi jika method serang pada class Hero dihapus?
 
-Exploitasi: Pemain atau hacker bisa memanipulasi HP menjadi nilai yang tidak wajar untuk mendapatkan keuntungan tidak adil (cheating).
+Error: TypeError: Can't instantiate abstract class Hero with abstract method serang.
 
-Inkonsistensi data: Jika ada bagian lain dari program yang mengasumsikan HP selalu bernilai 0 atau positif, program bisa crash atau menghasilkan hasil yang salah.
+Arti Error: Python melarang pembuatan objek dari class yang masih memiliki "janji" (method abstrak) yang belum ditepati.
 
-Pertanyaan 2: Jelaskan mengapa keberadaan method Setter sangat penting untuk menjaga integritas data dalam game!
+Konsekuensi: Jika kita lupa mengimplementasikan method yang dijanjikan di Interface, program tidak akan bisa berjalan. Ini memastikan setiap karakter baru (Mage, Fighter, dll) wajib memiliki fungsi serangan yang spesifik.
 
-Jawaban: Method Setter sangat penting untuk menjaga integritas data dalam game karena beberapa alasan krusial. Method Setter adalah "penjaga gerbang" yang memastikan hanya data yang valid dan aman yang bisa masuk ke dalam atribut object. Dalam game development, ini adalah praktik wajib untuk mencegah bug, cheating, dan memastikan game berjalan sesuai dengan aturan yang telah ditetapkan. Tanpa setter dengan validasi yang baik, integritas data game akan mudah rusak dan pengalaman bermain akan terganggu.
+🔄 Latihan 6: Polymorphism
+Fokus: Satu interface, banyak implementasi.
 
-🧾 Latihan 5. Abstraction dan Interface
-Latihan5
+📝 Analisis
+Skenario: Menambahkan class Healer ke dalam list pasukan tanpa mengubah loop for.
 
-PERTANYAAN 1: MELANGGAR KONTRAK
-Pada class Hero, hapus (atau jadikan komentar #) seluruh blok method def serang(self, target):. Jalankan programnya.
+Hasil: Program berjalan sangat lancar.
 
-a) Error apa yang muncul? b) Jelaskan dengan bahasamu sendiri, apa arti pesan error "Can't instantiate abstract class Hero with abstract method..."? c) Apa konsekuensinya jika kita lupa membuat method yang sudah dijanjikan di Interface?
+Keuntungan bagi Programmer:
 
-JAWABAN:
-a) Error yang Muncul:
-Error yang muncul adalah:
+Skalabilitas: Kita bisa menambah ribuan jenis hero baru tanpa perlu mengubah kode logika utama game.
 
-TypeError: Can't instantiate abstract class Hero with abstract method serang
-
-atau bisa juga:
-
-TypeError: Can't instantiate abstract class Hero with abstract methods: serang
-
-🔄 Latihan 6. Polymorphism
-Latihan6
-
-PERTANYAAN 1: UJI SKALABILITAS (KEMUDAHAN MENAMBAH FITUR)
-Tanpa mengubah satu huruf pun pada kode Looping (for pahlawan in pasukan:), buatlah satu class baru bernama Healer(Hero).
-
-Isi method serang milik Healer dengan: print(f"{self.nama} tidak menyerang, tapi menyembuhkan teman!")
-
-Masukkan objek Healer ke dalam list pasukan.
-
-a) Pertanyaan: Apakah program berjalan lancar? b) Kesimpulannya, apa keuntungan Polimorfisme bagi seorang programmer ketika harus mengupdate game dengan karakter baru di masa depan?
-
-JAWABAN:
-a) Apakah Program Berjalan Lancar?
-Ya, program berjalan dengan SANGAT LANCAR tanpa error sama sekali!
+Efisiensi: Cukup memanggil method yang sama (serang()), dan setiap objek akan merespons sesuai dengan identitas class-nya masing-masing.
 
 📚 Penutup
+Melalui praktikum ini, dapat disimpulkan bahwa penerapan OOP membuat:
 
-Latihan ini menunjukkan manfaat OOP. Kode lebih rapi. Data lebih aman. Program mudah dikembangkan. Cocok untuk game dan aplikasi skala besar.
+Struktur Kode: Lebih rapi dan terorganisir.
+
+Keamanan: Data lebih terlindungi dari akses ilegal.
+
+Fleksibilitas: Program sangat mudah untuk dikembangkan dalam skala besar (Scalable).
+
+Dibuat untuk memenuhi tugas Praktikum Pemrograman Berorientasi Objek.
